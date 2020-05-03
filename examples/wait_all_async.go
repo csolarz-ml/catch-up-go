@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func Async() {
+func WaitAllAsync() {
 	// Para nuestro ejemplo vamos a utilizar select con tres canales
 	c1 := make(chan string)
 	c2 := make(chan string)
@@ -15,24 +15,24 @@ func Async() {
 	// para simular operaciónes bloqueadas de procesos externos
 	// en goroutines concurrentes.
 	go func() {
-		fmt.Println("iniciando: cinco")
+		fmt.Println("iniciando: channel 5s")
 		time.Sleep(time.Second * 5)
-		fmt.Println("despertando: cinco")
-		c1 <- "cinco"
+		fmt.Println("fin: channel 5s")
+		c1 <- "channel 5s"
 	}()
 
 	go func() {
-		fmt.Println("iniciando: siete")
+		fmt.Println("iniciando: channel 7")
 		time.Sleep(time.Second * 7)
-		fmt.Println("despertando: siete")
-		c2 <- "siete"
+		fmt.Println("fin: channel 7")
+		c2 <- "channel 7s"
 	}()
 
 	go func() {
-		fmt.Println("iniciando: tres")
+		fmt.Println("iniciando: channel 3")
 		time.Sleep(time.Second * 3)
-		fmt.Println("despertando: tres")
-		c3 <- "tres"
+		fmt.Println("fin: channel 3")
+		c3 <- "channel 3s"
 	}()
 
 	// Vamos a usar `select` para esperar ambos valores
@@ -40,11 +40,11 @@ func Async() {
 	for i := 0; i < 3; i++ {
 		select {
 		case msg1 := <-c1:
-			fmt.Println("recibido", msg1)
+			fmt.Println("fin: ", msg1)
 		case msg2 := <-c2:
-			fmt.Println("recibido", msg2)
+			fmt.Println("fin: ", msg2)
 		case msg3 := <-c3:
-			fmt.Println("recibido", msg3)
+			fmt.Println("fin: ", msg3)
 		}
 	}
 }

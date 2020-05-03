@@ -15,8 +15,9 @@ func main() {
 	for {
 		fmt.Println()
 		fmt.Println("Ingrese opciones")
-		fmt.Println("1.- Ejecutar funciones en paralelo")
-		fmt.Println("2.- Ejecutar requests en paralelo")
+		fmt.Println("1.- Ejecutar funciones en paralelo y esperar que todos terminen")
+		fmt.Println("2.- Ejecutar requests en paralelo y esperar que todos terminen")
+		fmt.Println("3.- Ejecutar funciones en paralelo y esperar que termine solo uno")
 
 		var input string
 		fmt.Scanln(&input)
@@ -28,14 +29,25 @@ func main() {
 			break
 		} else if input == "1" {
 			start := time.Now()
-			examples.Async()
+
+			examples.WaitAllAsync()
+
 			elapsed := time.Since(start)
-			fmt.Printf("Async took %s", elapsed)
+			fmt.Printf("WaitAllAsync se ejecuto en %s", elapsed)
 		} else if input == "2" {
 			start := time.Now()
-			examples.Requests()
+
+			examples.WaitAllRequests()
+
 			elapsed := time.Since(start)
-			fmt.Printf("Requests took %s", elapsed)
+			fmt.Printf("WaitAnyAsync se ejecuto en %s", elapsed)
+		} else if input == "3" {
+			start := time.Now()
+
+			examples.WaitAnyAsync()
+
+			elapsed := time.Since(start)
+			fmt.Printf("WaitAnyAsync se ejecuto en %s", elapsed)
 		}
 	}
 }
