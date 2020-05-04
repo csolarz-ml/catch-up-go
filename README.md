@@ -1,6 +1,6 @@
 # catch-up-go
 
-Ejemplos basicos de Go.
+Ejemplos basicos de asincronia en Go usando channels.
 
 1.- Ejecutar funciones en paralelo y esperar que todas terminen. Similar a Promise.all en js - Task.WhenAll en C#
 
