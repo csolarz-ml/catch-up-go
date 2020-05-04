@@ -9,3 +9,6 @@ Ejemplos basicos de asincronia en Go usando channels. La app copnsta de un menu 
 3.- Ejecutar funciones en paralelo y esperar que termine el primero (Similar a Promise.race Js - Task.WhenAny en C#)
 
 Manejo de packages con Go mods.
+
+![image](https://user-images.githubusercontent.com/64028682/80973163-03e00500-8ded-11ea-9a0f-10fb920870af.png)
+
